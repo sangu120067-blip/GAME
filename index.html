@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>🚀 Astro Dash</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- GAME HEADER -->
+    <header class="game-header">
+
+        <div class="logo">
+            🚀 ASTRO DASH
+        </div>
+
+        <div class="tagline">
+            ⚡ RUN • JUMP • SURVIVE ⚡
+        </div>
+
+    </header>
+
+
+    <!-- GAME HUD -->
+    <div id="gameInfo">
+
+        <div class="hud-item">
+            <span>💰</span>
+            <span id="score">SCORE: 0</span>
+        </div>
+
+        <div class="hud-item">
+            <span>📏</span>
+            <span id="distance">DISTANCE: 0m</span>
+        </div>
+
+        <div class="hud-item">
+            <span>🏆</span>
+            <span id="highScore">BEST: 0</span>
+        </div>
+
+        <div class="hud-item">
+            <span id="lives">❤️ ❤️ ❤️ ❤️</span>
+        </div>
+
+    </div>
+
+
+    <!-- GAME AREA -->
+    <main id="game">
+
+        <!-- Player -->
+        <div id="player">🧑‍🚀</div>
+
+    </main>
+
+
+    <!-- CONTROLS -->
+    <div class="controls">
+
+        <span>⬅️ MOVE</span>
+        <span>➡️ MOVE</span>
+        <span>SPACE ⬆️ JUMP</span>
+
+    </div>
+
+
+    <!-- JAVASCRIPT -->
+    <script src="game.js"></script>
+
+</body>
+
+</html>

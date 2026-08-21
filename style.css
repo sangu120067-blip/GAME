@@ -1,0 +1,579 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+
+    background:
+        radial-gradient(circle at top, #202060, #080812 70%);
+
+    color: white;
+    text-align: center;
+
+    font-family: Arial, sans-serif;
+
+    overflow: hidden;
+
+    transition: background 2s ease;
+}
+
+
+/* =========================
+   GAME TITLE
+========================= */
+
+h1 {
+    margin: 18px 0 4px;
+
+    font-size: 42px;
+    letter-spacing: 4px;
+
+    text-shadow:
+        0 0 10px #00ffff,
+        0 0 25px #0066ff;
+}
+
+h1::after {
+    content: "⚡ RUN • JUMP • SURVIVE ⚡";
+
+    display: block;
+
+    margin-top: 5px;
+
+    font-size: 13px;
+    letter-spacing: 3px;
+
+    opacity: 0.7;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.game-header {
+    margin-top: 12px;
+}
+
+.logo {
+    font-size: 38px;
+    font-weight: bold;
+    letter-spacing: 4px;
+
+    text-shadow:
+        0 0 10px #00ffff,
+        0 0 25px #0066ff;
+}
+
+.tagline {
+    margin-top: 5px;
+
+    font-size: 13px;
+    letter-spacing: 3px;
+
+    opacity: 0.7;
+}
+
+
+/* =========================
+   GAME INFORMATION
+========================= */
+
+#gameInfo {
+    width: 800px;
+
+    margin: 12px auto;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 10px 18px;
+
+    background: rgba(20, 20, 50, 0.8);
+
+    border: 1px solid rgba(255, 255, 255, 0.3);
+
+    border-radius: 12px;
+
+    font-size: 17px;
+    font-weight: bold;
+
+    box-shadow:
+        0 0 15px rgba(0, 200, 255, 0.25);
+}
+
+
+/* =========================
+   GAME AREA
+========================= */
+
+#game {
+    width: 800px;
+    height: 430px;
+
+    margin: 12px auto 0;
+
+    position: relative;
+
+    overflow: hidden;
+
+    border: 3px solid white;
+    border-radius: 15px;
+
+    background:
+        linear-gradient(
+            #171740 0%,
+            #0d0d25 65%,
+            #080812 100%
+        );
+
+    box-shadow:
+        0 0 15px rgba(0, 200, 255, 0.5),
+        0 0 40px rgba(0, 100, 255, 0.2);
+
+    transition:
+        background 2s ease,
+        box-shadow 2s ease;
+}
+
+
+/* =========================
+   SPACE BACKGROUND
+========================= */
+
+.space-background {
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    z-index: 1;
+
+    overflow: hidden;
+}
+
+
+/* =========================
+   STARS
+========================= */
+
+.space-star {
+    position: absolute;
+
+    color: white;
+
+    user-select: none;
+
+    pointer-events: none;
+
+    animation:
+        starMove linear infinite;
+}
+
+@keyframes starMove {
+
+    from {
+        transform: translateX(850px);
+    }
+
+    to {
+        transform: translateX(-80px);
+    }
+
+}
+
+
+/* =========================
+   PLANETS
+========================= */
+
+.space-planet {
+    position: absolute;
+
+    pointer-events: none;
+
+    user-select: none;
+
+    z-index: 2;
+
+    filter:
+        drop-shadow(0 0 15px rgba(255,255,255,0.3));
+
+    animation:
+        planetFloat 5s ease-in-out infinite;
+}
+
+@keyframes planetFloat {
+
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-12px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+
+}
+
+
+/* =========================
+   COSMIC GLOW
+========================= */
+
+.cosmic-glow {
+    position: absolute;
+
+    width: 300px;
+    height: 300px;
+
+    border-radius: 50%;
+
+    pointer-events: none;
+
+    z-index: 1;
+
+    opacity: 0.15;
+
+    filter: blur(35px);
+
+    animation:
+        glowMove 8s ease-in-out infinite;
+}
+
+@keyframes glowMove {
+
+    0% {
+        transform: translate(700px, 100px);
+    }
+
+    50% {
+        transform: translate(450px, 20px);
+    }
+
+    100% {
+        transform: translate(700px, 100px);
+    }
+
+}
+
+
+/* =========================
+   GROUND
+========================= */
+
+#game::after {
+    content: "";
+
+    position: absolute;
+
+    bottom: 0;
+    left: 0;
+
+    width: 100%;
+    height: 20px;
+
+    background: #151515;
+
+    border-top: 2px solid #00ffff;
+
+    box-shadow:
+        0 -5px 15px rgba(0, 255, 255, 0.3);
+
+    z-index: 20;
+}
+
+
+/* =========================
+   PLAYER
+========================= */
+
+#player {
+    position: absolute;
+
+    bottom: 20px;
+    left: 100px;
+
+    font-size: 50px;
+
+    z-index: 10;
+
+    filter:
+        drop-shadow(0 0 8px #00ffff);
+
+    user-select: none;
+}
+
+
+/* =========================
+   OBSTACLE
+========================= */
+
+.obstacle {
+    position: absolute;
+
+    bottom: 20px;
+
+    font-size: 42px;
+
+    z-index: 5;
+
+    user-select: none;
+
+    filter:
+        drop-shadow(0 0 7px #ff3030);
+}
+
+
+/* =========================
+   COIN
+========================= */
+
+.coin {
+    position: absolute;
+
+    font-size: 35px;
+
+    z-index: 6;
+
+    user-select: none;
+
+    filter:
+        drop-shadow(0 0 10px gold);
+}
+
+
+/* =========================
+   POWER UP
+========================= */
+
+.power-up {
+    user-select: none;
+
+    pointer-events: none;
+}
+
+
+/* =========================
+   CONTROLS
+========================= */
+
+.controls {
+    margin-top: 10px;
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 30px;
+
+    font-size: 12px;
+
+    letter-spacing: 2px;
+
+    opacity: 0.6;
+}
+
+
+#gameInfo::after {
+    content: "← → MOVE     SPACE = JUMP";
+
+    position: fixed;
+
+    bottom: 8px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    font-size: 12px;
+    letter-spacing: 2px;
+
+    opacity: 0.55;
+}
+/* ==========================================
+   📱 ASTRO DASH - PHONE FIX
+========================================== */
+
+html,
+body {
+    width: 100%;
+    max-width: 100%;
+}
+
+@media (max-width: 600px) {
+
+    body {
+        overflow: hidden;
+        touch-action: none;
+        -webkit-user-select: none;
+        user-select: none;
+    }
+
+    .game-header {
+        margin-top: 6px;
+    }
+
+    .logo {
+        font-size: 24px;
+        letter-spacing: 2px;
+    }
+
+    .tagline {
+        font-size: 9px;
+        letter-spacing: 1.5px;
+    }
+
+    #gameInfo {
+        width: calc(100vw - 12px);
+        margin: 6px auto;
+        padding: 6px 7px;
+        font-size: 10px;
+        border-radius: 8px;
+    }
+
+    #gameInfo .hud-item {
+        white-space: nowrap;
+    }
+
+    #game {
+        width: 800px;
+        height: 430px;
+
+        margin: 0 auto;
+
+        transform-origin: top center;
+
+        /* IMPORTANT */
+        touch-action: none;
+    }
+
+    .controls {
+        display: none;
+    }
+
+    #gameInfo::after {
+        display: none;
+    }
+
+    #mobileControls {
+        display: flex !important;
+
+        position: fixed;
+
+        left: 0;
+        right: 0;
+        bottom: 12px;
+
+        width: 100%;
+
+        padding: 0 18px;
+
+        transform: none;
+
+        justify-content: space-between;
+
+        align-items: center;
+
+        z-index: 99999;
+
+        pointer-events: none;
+    }
+
+    #mobileControls button {
+        width: 65px;
+        height: 65px;
+
+        flex-shrink: 0;
+
+        border-radius: 50%;
+
+        border: 2px solid rgba(255,255,255,0.7);
+
+        background: rgba(10,20,60,0.85);
+
+        color: white;
+
+        font-size: 27px;
+
+        box-shadow:
+            0 0 12px rgba(0,220,255,0.6);
+
+        -webkit-tap-highlight-color: transparent;
+
+        touch-action: none;
+
+        user-select: none;
+
+        pointer-events: auto;
+    }
+
+    #mobileControls button:active {
+        transform: scale(0.88);
+
+        background: rgba(0,180,255,0.5);
+
+        box-shadow:
+            0 0 25px rgba(0,255,255,0.9);
+    }
+}
+
+
+/* ==========================================
+   SMALL PHONES
+========================================== */
+
+@media (max-width: 380px) {
+
+    #gameInfo {
+        font-size: 9px;
+    }
+
+    #mobileControls {
+        padding: 0 12px;
+        bottom: 8px;
+    }
+
+    #mobileControls button {
+        width: 58px;
+        height: 58px;
+        font-size: 24px;
+    }
+}
+
+
+/* ==========================================
+   LANDSCAPE PHONE
+========================================== */
+
+@media (max-width: 900px) and (orientation: landscape) {
+
+    body {
+        overflow: hidden;
+    }
+
+    .game-header {
+        display: none;
+    }
+
+    #gameInfo {
+        margin: 3px auto;
+        width: 95vw;
+        font-size: 10px;
+    }
+
+    #mobileControls {
+        bottom: 8px;
+    }
+
+    #mobileControls button {
+        width: 58px;
+        height: 58px;
+    }
+}
